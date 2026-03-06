@@ -5,7 +5,7 @@
         <!-- Session Status -->
         <x-auth-session-status class="text-center" :status="session('status')" />
 
-        <form method="POST" action="{{ route('password.email') }}" class="flex flex-col gap-6">
+        <form method="POST" action="{{ route('password.email') }}" class="flex flex-col gap-6" x-data="{ submitting: false }" x-on:submit="submitting = true">
             @csrf
 
             <!-- Email Address -->
@@ -18,7 +18,7 @@
                 placeholder="email@example.com"
             />
 
-            <flux:button variant="primary" type="submit" class="w-full" data-test="email-password-reset-link-button">
+            <flux:button variant="primary" type="submit" class="w-full" data-test="email-password-reset-link-button" x-bind:disabled="submitting">
                 {{ __('Email password reset link') }}
             </flux:button>
         </form>
